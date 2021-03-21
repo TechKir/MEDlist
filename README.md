@@ -1,4 +1,4 @@
-# med_test
+# med_list
 
 ## Project setup
 ```
