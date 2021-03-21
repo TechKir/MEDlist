@@ -30,9 +30,8 @@ export default {
 
 <style>
 .list h2 {
-    font-size: 1.2em;
-    font-weight: 400;
-    font-style: italic;
+    font-size: 1em;
+    font-weight: 700;
 }
 .list__li {
     display: flex;
@@ -57,7 +56,6 @@ export default {
     display: block;
     padding: 0.2em 0;
     font-size: 0.8em;
-    font-weight: 300;;
 }
 
 </style>

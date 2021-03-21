@@ -2,9 +2,9 @@
     <header class="header">
         <h1 class="header__title"><span>MED</span>list</h1>
         <nav class="header__nav">
-            <button class="header__btn">Meds for patients after 30 years old</button>
-            <button class="header__btn">Mens Meds</button>
-            <button class="header__btn">Show All Data</button>
+            <button @click="showMeds30Plus" class="header__btn">Drugs administered after the age of 30</button>
+            <button @click="showMenMeds" class="header__btn">Mens Meds</button>
+            <button @click="showList" class="header__btn">Patients List</button>
         </nav>
     </header>
 </template>
@@ -12,6 +12,11 @@
 <script>
 export default {
     name: 'Header',
+    props: {
+        showMenMeds:Function,
+        showList:Function,
+        showMeds30Plus:Function,
+    },
 }
 </script>
 
