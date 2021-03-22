@@ -10,8 +10,8 @@
                 <span>age: {{patient.age}}</span>
             </div>
 
-            <div class="list__div">
-                
+            <div class="list__div">               
+                <!-- TODO: replacte v-if with something different-->
                 <p v-for="med in meds" :key="med.id" v-if="med.patientIds.includes(patient.id)"> {{med.medicationName}}</p>
             </div>
         </li>
@@ -27,34 +27,3 @@ export default {
     },
 }
 </script>
-
-<style>
-.list h2 {
-    font-size: 1em;
-    font-weight: 700;
-}
-.list__li {
-    display: flex;
-    justify-content: space-between;
-    padding: 1.5em;
-    border-bottom: whitesmoke 1px solid;
-}
-.list div:nth-child(2) {
-    width:16vw;
-}
-
-.list__li h2:nth-child(2){
-    width:16vw;
-}
-
-.list li:first-child {
-    background-color: #c7dcd9;
-    padding: 0.5em 1.5em;
-}
-
-.list__div span {
-    display: block;
-    padding: 0.2em 0;
-    font-size: 0.8em;
-}
-</style>

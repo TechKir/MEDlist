@@ -41,7 +41,6 @@ export default {
     text-decoration: none;
     background: #4abd93;
     color: #ffffff;
-    font-family: sans-serif;
     font-size: 1rem;
     cursor: pointer;
     text-align: center;

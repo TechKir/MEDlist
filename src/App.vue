@@ -55,12 +55,25 @@ export default {
       this.isMeds30PlusActive=true;
       this.isListActive=false;
       this.isMenMedsActive=false;
+    },
+    compare: function (a, b) {
+      const nameA = a.name.toUpperCase();
+      const nameB = b.name.toUpperCase();
+
+      let comparison = 0;
+      if (nameA > nameB) {
+        comparison = 1;
+      } else if (nameA < nameB) {
+        comparison = -1;
+      }
+      return comparison;
     }
   },
   beforeCreate() {
       fetch('https://cerber.pixel.com.pl/api/patients')
         .then(async res => this.patients= await res.json())
         .then(patients => {
+          this.patients.sort(this.compare)
           patients.filter(patient => patient.age>=30 && this.patients30PlusIds.push(patient.id))
           return this.malePatients  = patients.filter(patient => patient.gender==='male' && patient)
           })
@@ -75,22 +88,24 @@ export default {
           meds.forEach( med => {
             med.patientIds.every( patientId => {
               if(this.maleIds.includes(patientId)){
-                this.maleMeds.push(med.medicationName)
+                this.maleMeds.push({name:med.medicationName, strength: med.strength})
                 return false
               }
               return true
               })
           }) 
+          this.maleMeds.sort(this.compare);
 
           meds.forEach( med => {
             med.patientIds.every( patientId => {
               if(this.patients30PlusIds.includes(patientId)){
-                this.meds30Plus.push(med.medicationName)
+                this.meds30Plus.push({name:med.medicationName, strength: med.strength})
                 return false
               }
               return true
               })
           }) 
+          this.meds30Plus.sort(this.compare);
         })
         .catch(err => console.error(err))
   },
@@ -116,5 +131,34 @@ body {
   font-size: 0.7em;
   background-color: whitesmoke;
   padding: 0.5em 0;
+}
+
+.list h2 {
+    font-size: 1em;
+    font-weight: 700;
+}
+.list__li {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5em;
+    border-bottom: whitesmoke 1px solid;
+}
+.list div:nth-child(2) {
+    width:16vw;
+}
+
+.list__li h2:nth-child(2){
+    width:16vw;
+}
+
+.list li:first-child {
+    background-color: #c7dcd9;
+    padding: 0.5em 1.5em;
+}
+
+.list__div span {
+    display: block;
+    padding: 0.2em 0;
+    font-size: 0.8em;
 }
 </style>
